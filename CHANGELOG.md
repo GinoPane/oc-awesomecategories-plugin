@@ -16,9 +16,9 @@ Types of changes
 
 ## [Unreleased]
 
-## 1.0.0 -
+## 1.0.0 - 2019-01-21
 
 ### Features
 * The initial release of Awesome Categories.
 
-[Unreleased]: https://github.com/GinoPane/oc-blogtimetoread-plugin/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/GinoPane/oc-awesomecategories-plugin/compare/v1.0.0...HEAD
