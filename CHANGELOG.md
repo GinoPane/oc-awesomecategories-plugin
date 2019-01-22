@@ -16,7 +16,7 @@ Types of changes
 
 ## [Unreleased]
 
-## 1.0.0 - 2019-01-21
+## 1.0.0 - 2019-01-22
 
 ### Features
 * The initial release of Awesome Categories.
