@@ -17,6 +17,8 @@ class Plugin extends PluginBase
 
     const LOCALIZATION_KEY = 'ginopane.awesomecategories::lang.';
 
+    const DB_PREFIX = 'ginopane_awesomecategories_';
+
     public $require = [
         'RainLab.Blog',
         'GinoPane.AwesomeIconsList'
@@ -47,50 +49,108 @@ class Plugin extends PluginBase
     }
 
     /**
-     * Extend RainLab Category model
+     * Extend RainLab Categories
      */
     private function extendCategories()
+    {
+        $this->extendController();
+        $this->extendModel();
+    }
+
+    /**
+     * Extend Categories controller
+     */
+    private function extendController()
     {
         CategoriesController::extendFormFields(function ($form, $model) {
             if (!$model instanceof CategoryModel) {
                 return;
             }
 
-            $form->addFields([
-                'awesome_section' => [
-                    'label'         => self::LOCALIZATION_KEY . 'form.awesome_section.label',
-                    'type'          => 'section',
-                    'comment'       => self::LOCALIZATION_KEY . 'form.awesome_section.comment'
-                ]
-            ]);
-
-            $form->addFields([
-                'awesome_icon' => [
-                    'label'         => self::LOCALIZATION_KEY . 'form.awesome_icon.label',
-                    'type'          => 'awesomeiconslist',
-                    'unicodeValue'  => false,
-                    'emptyOption'   => true,
-                    'placeholder'   => self::LOCALIZATION_KEY . 'form.awesome_icon.placeholder',
-                    'span'          => 'left'
-                ]
-            ]);
-
-            $form->addFields([
-                'awesome_class' => [
-                    'label'         => self::LOCALIZATION_KEY . 'form.awesome_class.label',
-                    'type'          => 'text',
-                    'span'          => 'right'
-                ]
-            ]);
-
-            $form->addFields([
-                'awesome_color' => [
-                    'label'         => self::LOCALIZATION_KEY . 'form.awesome_color.label',
-                    'type'          => 'colorpicker',
-                    'allowEmpty'    => true,
-                    'span'          => 'full'
-                ]
-            ]);
+            $this->addSection($form);
+            $this->addIcon($form);
+            $this->addCssClass($form);
+            $this->addColor($form);
         });
+    }
+
+    /**
+     * Extend Category model
+     */
+    private function extendModel()
+    {
+        CategoryModel::extend(function ($model) {
+            $model->addDynamicMethod('getAwesomeIconAttribute', function() use ($model) {
+                return $model->{self::DB_PREFIX . 'awesome_icon'};
+            });
+
+            $model->addDynamicMethod('getAwesomeColorAttribute', function() use ($model) {
+                return $model->{self::DB_PREFIX . 'awesome_color'};
+            });
+
+            $model->addDynamicMethod('getAwesomeClassAttribute', function() use ($model) {
+                return $model->{self::DB_PREFIX . 'awesome_class'};
+            });
+        });
+    }
+
+    /**
+     * @param $form
+     */
+    private function addSection($form)
+    {
+        $form->addFields([
+            'awesome_section' => [
+                'label' => self::LOCALIZATION_KEY . 'form.awesome_section.label',
+                'type' => 'section',
+                'comment' => self::LOCALIZATION_KEY . 'form.awesome_section.comment'
+            ]
+        ]);
+    }
+
+    /**
+     * @param $form
+     */
+    private function addIcon($form)
+    {
+        $form->addFields([
+            self::DB_PREFIX . 'awesome_icon' => [
+                'label' => self::LOCALIZATION_KEY . 'form.awesome_icon.label',
+                'type' => 'awesomeiconslist',
+                'unicodeValue' => false,
+                'emptyOption' => true,
+                'placeholder' => self::LOCALIZATION_KEY . 'form.awesome_icon.placeholder',
+                'span' => 'left'
+            ]
+        ]);
+    }
+
+    /**
+     * @param $form
+     */
+    private function addColor($form)
+    {
+        $form->addFields([
+            self::DB_PREFIX . 'awesome_color' => [
+                'label' => self::LOCALIZATION_KEY . 'form.awesome_color.label',
+                'type' => 'colorpicker',
+                'allowEmpty' => true,
+                'span' => 'full'
+            ]
+        ]);
+    }
+
+    /**
+     * @param $form
+     */
+    private function addCssClass($form)
+    {
+        $form->addFields([
+            self::DB_PREFIX . 'awesome_class' => [
+                'label' => self::LOCALIZATION_KEY . 'form.awesome_class.label',
+                'type' => 'text',
+                'span' => 'right'
+            ]
+        ]);
     }
 }

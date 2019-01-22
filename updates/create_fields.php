@@ -4,6 +4,7 @@ namespace GinoPane\AwesomeCategories\Updates;
 
 use Schema;
 use System\Classes\PluginManager;
+use GinoPane\AwesomeCategories\Plugin;
 use October\Rain\Database\Updates\Migration;
 
 /**
@@ -41,9 +42,9 @@ class CreateFields extends Migration
      */
     private function dropFields()
     {
-        $this->dropColumn('awesome_icon');
-        $this->dropColumn('awesome_class');
-        $this->dropColumn('awesome_color');
+        $this->dropColumn(Plugin::DB_PREFIX . 'awesome_icon');
+        $this->dropColumn(Plugin::DB_PREFIX . 'awesome_class');
+        $this->dropColumn(Plugin::DB_PREFIX . 'awesome_color');
     }
 
     /**
@@ -51,24 +52,21 @@ class CreateFields extends Migration
      */
     private function createFields()
     {
-        if (!Schema::hasColumn(self::TABLE, 'awesome_icon'))
-        {
+        if (!Schema::hasColumn(self::TABLE, Plugin::DB_PREFIX . 'awesome_icon')) {
             Schema::table(self::TABLE, function ($table) {
-                $table->string('awesome_icon', 50)->nullable()->default(null);
+                $table->string(Plugin::DB_PREFIX . 'awesome_icon', 50)->nullable()->default(null);
             });
         }
 
-        if (!Schema::hasColumn(self::TABLE, 'awesome_class'))
-        {
+        if (!Schema::hasColumn(self::TABLE, Plugin::DB_PREFIX . 'awesome_class')) {
             Schema::table(self::TABLE, function ($table) {
-                $table->string('awesome_class')->nullable()->default(null);
+                $table->string(Plugin::DB_PREFIX . 'awesome_class')->nullable()->default(null);
             });
         }
 
-        if (!Schema::hasColumn(self::TABLE, 'awesome_color'))
-        {
+        if (!Schema::hasColumn(self::TABLE, Plugin::DB_PREFIX . 'awesome_color')) {
             Schema::table(self::TABLE, function ($table) {
-                $table->string('awesome_color', 7)->nullable()->default(null);
+                $table->string(Plugin::DB_PREFIX . 'awesome_color', 7)->nullable()->default(null);
             });
         }
     }
