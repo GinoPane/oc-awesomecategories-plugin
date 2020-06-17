@@ -13,6 +13,6 @@ A simple extension for [RainLab Blog](https://octobercms.com/plugin/rainlab-blog
 Awesome Categories plugin adds a few new fields to the Category model, so you could customize a look and feel for your categories even more when showing them on the frontend. New fields are:
 * `awesome_icon` (e.g. ```{{ category.awesome_icon }}```, ```{{ category.awesomeIcon }}```) - powered by [Awesome Icons List](https://octobercms.com/plugin/ginopane-awesomeiconslist), adds ability to select an icon for a category;
 * `awesome_color` (e.g. ```{{ category.awesome_color }}```, ```{{ category.awesomeColor }}```) - a color-picker field which simply adds ability to attach a color to a category, the color is stored as hex color;
-* `awesome_style` (e.g. ```{{ category.awesome_style }}```, ```{{ category.awesomeStyle }}```) - if it is not enough, a dedicated field for custom CSS style is ready for you.
+* `awesome_class` (e.g. ```{{ category.awesome_class }}```, ```{{ category.awesomeClass }}```) - if it is not enough, a dedicated field for custom CSS style is ready for you.
 
 > No components or widgets are provided by this plugin
