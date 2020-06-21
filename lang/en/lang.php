@@ -15,7 +15,7 @@ return [
             'placeholder' => 'Select icon...'
         ],
         'awesome_class' => [
-            'label' => 'Custom CSS class'
+            'label' => 'Custom CSS class list (separated by spaces if more than one)'
         ],
         'awesome_color' => [
             'label' => 'Color'
