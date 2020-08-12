@@ -14,16 +14,19 @@ Types of changes
 * **Fixed** for any bug fixes.
 * **Security** in case of vulnerabilities.
 
-## [Unreleased]
+## 1.1.0 - 2020-08-12
+
+### Added
+* Spanish localization
 
 ## 1.0.1 - 2020-06-21
 
 ### Fixed
-* Fixed variable naming and documentation.
+* Fixed variable naming and documentation
 
 ## 1.0.0 - 2019-01-22
 
 ### Features
-* The initial release of Awesome Categories.
+* The initial release of Awesome Categories
 
-[Unreleased]: https://github.com/GinoPane/oc-awesomecategories-plugin/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/GinoPane/oc-awesomecategories-plugin/compare/v1.1.0..HEAD
